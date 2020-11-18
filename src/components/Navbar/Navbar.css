@@ -1,0 +1,35 @@
+.navbar{
+    display:flex;
+    height:60px;
+    background:#a00;
+    justify-content: space-between;
+    padding-right:30px;
+    align-items: center;
+}
+.navbar a{
+    color:#CCC;
+    text-decoration: none;
+    margin:0 5px;
+    cursor: pointer;
+}
+.navbar a:hover{
+    color:#FFF;
+}
+.navbar img{
+    height:100%;
+    cursor: pointer;
+}
+
+
+
+
+/* .navbar img:hover path{
+    stroke-dasharray: 100;
+    animation: dash 5s linear;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  } */
+/* } */
