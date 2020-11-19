@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import abe from './abe.png';
 import './home.css';
+// import home from './home.png'
 // import orange from './components/Navbar/orange.png';
 class Home extends Component{
     particles = [];
@@ -29,11 +30,12 @@ class Home extends Component{
                     <h1 className='lead'>Software Developer, Musician & Creative</h1>
                     <p>✨Building awesome things because they are <span className='orange'>awesome</span>!</p>
                     <canvas id='lead-canvas'></canvas>
+                    {/* <img src={home} /> */}
                 </div>
                 <div className='alt col section'>
                     <h2>Thanks for visiting my site.</h2>
                     <div className='row'>
-                        <img src={abe} id='me'/>
+                        <img src={abe} id='me' alt='Photo Of Me'/>
                         <p>My names J Abraham Johnson. Although most the time I go by Abe or Jabe. I’m the classical millennial creative. I’ve never needed a reason to create, the love of knowledge and the quest for information is enough. Also money. I have many passions, hobbies and skills I can utilize to develop versatile solutions for all types of businesses.</p>
                     </div>
                 </div>

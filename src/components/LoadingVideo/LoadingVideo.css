@@ -1,6 +1,7 @@
 #logo-intro-wrapper{
     overflow: hidden;
-    animation: hide 3.6s ease-out;
+    animation: hide 3.7s ease-out;
+    animation-fill-mode: forwards;
     position:fixed;
     top:0;
     left:0;
@@ -15,16 +16,18 @@
 }
 #logo-intro{
     position: absolute;
-    left:0;
+    left:-18%;
     right:0;
     top:0;
-    bottom:0;
+    bottom:-10%;
+    transform: scale(0.6);
     /* width:100vw; */
     /* pointer-events: none;s */
     
 }
 @keyframes hide{
     0%{bottom:0%}
-    90%{bottom:2%}
-    100%{bottom:100%}
+    90%{bottom:1%;top:-4%;}
+    95%{bottom:91%;top:-15%;}
+    99%{bottom:91%;top:-15%;}
 }
