@@ -1,0 +1,43 @@
+#me{
+    width:180px;
+    border-radius:10%;
+    filter:grayscale(.6);
+    transition: all 0.3s;
+}
+#me:hover{
+    filter:grayscale(0);
+}
+.home-hero .lead{
+    font-family: 'Heebo', sans-serif;
+    font-size:2.2em;
+    color: white;
+    opacity: 0.5;
+    animation:light-show 10s ease infinite alternate;
+}
+.alt p{
+    max-width:600px;
+}
+.alt{
+    background-color: #e67c0a;
+    color:white;
+    padding:60px 0;
+    margin:60px 0;
+}
+.alt .row{
+    align-items: center;
+}
+.container{
+    background-color: #ddd;
+}
+.section{
+    min-height:600px;
+}
+@keyframes light-show{
+    0%{text-shadow:2px 2px 5px  #e67c0a;}
+    30%{text-shadow:-2px 4px 10px  #e1821d;}
+    50%{text-shadow:2px 6px 7px  #e67c0a;filter:grayscale(0.5);}
+    60%{text-shadow:4px -2px 3px  #563007;}
+    70%{text-shadow:9px 5px 4px  #a56015;}
+    90%{text-shadow:-2px 2px 6px  #ddb993;}
+    95%{text-shadow:2px 2px 5px  #e67c0a;}
+}

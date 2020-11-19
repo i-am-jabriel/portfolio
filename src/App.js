@@ -1,25 +1,26 @@
 import './App.css';
-import Logo from './components/Logo/Logo';
+import LoadingVideo from './components/LoadingVideo/LoadingVideo';
 import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
+import Works from './components/Works/Works';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-    <Navbar />
-      <header className="App-header">
-        <Logo/>
-        <p>
-          Abe's React Website
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App">   
+        <Navbar />
+        <LoadingVideo/>
+        <Home/>
+        <Works/>
+        {/* <Router>
+            <Switch>
+                <Route exact path='/' component={Home}></Route>
+                <Route></Route>
+                <Route></Route>
+                <Route></Route>
+                <Route></Route>
+            </Switch>
+        </Router> */}
     </div>
   );
 }

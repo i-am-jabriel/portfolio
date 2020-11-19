@@ -1,28 +1,50 @@
 .navbar{
+    position: sticky;
     display:flex;
     height:60px;
-    background:#a00;
+    background:#e67c0a;
     justify-content: space-between;
     padding-right:30px;
     align-items: center;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 .navbar a{
-    color:#CCC;
+    color:#ddd;
     text-decoration: none;
     margin:0 5px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 .navbar a:hover{
     color:#FFF;
 }
-.navbar img{
-    height:100%;
+
+#logo{
     cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+    position: relative;
 }
-
-
-
-
+.official,.jabe{
+    display: inline-block;
+}
+#logo img{
+    height:50px;
+    position: relative;
+}
+#logo:hover{
+    opacity: 1;
+}
+.orange{margin-right:5px;}
+#logo .official, #logo .jabe{
+    max-width:28px;
+    transition: all 0.7s ease-out;
+    overflow: hidden;
+}
+#logo:hover .official, #logo:hover .jabe{
+    max-width:150px;
+}
 /* .navbar img:hover path{
     stroke-dasharray: 100;
     animation: dash 5s linear;
