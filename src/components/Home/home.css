@@ -26,9 +26,6 @@
 .alt .row{
     align-items: center;
 }
-.container{
-    background-color: #ddd;
-}
 .section{
     min-height:600px;
 }

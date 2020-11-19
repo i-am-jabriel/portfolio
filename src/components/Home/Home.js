@@ -27,11 +27,11 @@ class Home extends Component{
             <div className='container' name='Home'>
                 <div className='home-hero col section'>
                     <h1 className='lead'>Software Developer, Musician & Creative</h1>
-                    <p>✨Building awesome things because they are awesome!</p>
+                    <p>✨Building awesome things because they are <span className='orange'>awesome</span>!</p>
                     <canvas id='lead-canvas'></canvas>
                 </div>
                 <div className='alt col section'>
-                    <h2>Welcome</h2>
+                    <h2>Thanks for visiting my site.</h2>
                     <div className='row'>
                         <img src={abe} id='me'/>
                         <p>My names J Abraham Johnson. Although most the time I go by Abe or Jabe. I’m the classical millennial creative. I’ve never needed a reason to create, the love of knowledge and the quest for information is enough. Also money. I have many passions, hobbies and skills I can utilize to develop versatile solutions for all types of businesses.</p>

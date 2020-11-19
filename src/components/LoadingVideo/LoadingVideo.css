@@ -1,16 +1,17 @@
 #logo-intro-wrapper{
     overflow: hidden;
-    animation: hide 4.5s ease-out;
+    animation: hide 3.6s ease-out;
     position:fixed;
     top:0;
     left:0;
     right:0;
+    margin-top:-100px;
     pointer-events: none;
     box-shadow:10px 10px 40px rgba(204, 204, 204,0.5);
     background-color:black;
     display:flex;
     justify-content: center;
-    z-index:2;
+    z-index:4;
 }
 #logo-intro{
     position: absolute;
@@ -24,6 +25,6 @@
 }
 @keyframes hide{
     0%{bottom:0%}
-    85%{bottom:5%}
+    90%{bottom:2%}
     100%{bottom:100%}
 }

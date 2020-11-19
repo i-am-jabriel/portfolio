@@ -13,3 +13,18 @@
 p{
     text-align:center;
 }
+.fixed{
+    position: fixed;
+    top:0;
+}
+.fadein{
+    animation:fadein 0.3s ease;
+}
+.orange{
+    color:#e67c0a;
+}
+@keyframes fadein{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+
+}

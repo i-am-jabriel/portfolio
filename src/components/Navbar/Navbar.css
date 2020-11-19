@@ -2,29 +2,34 @@
     position: sticky;
     display:flex;
     height:60px;
-    background:#e67c0a;
+    background:black;
     justify-content: space-between;
     padding-right:30px;
     align-items: center;
     padding-top:5px;
     padding-bottom:5px;
+    box-shadow:2px 2px 10px #854909;
+    z-index:3;
 }
 .navbar a{
-    color:#ddd;
+    color:#e67c0a;
+    text-shadow:1px 1px #999;
     text-decoration: none;
     margin:0 5px;
     cursor: pointer;
+    opacity:0.7;
     transition: all 0.3s;
 }
 .navbar a:hover{
-    color:#FFF;
+    opacity: 1;
 }
 
 #logo{
     cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.5s ease;
+    transition: all 0.5s ease;
     position: relative;
+    filter:saturate(-100);
 }
 .official,.jabe{
     display: inline-block;
@@ -35,11 +40,12 @@
 }
 #logo:hover{
     opacity: 1;
+    filter:saturate(1.1);
 }
 .orange{margin-right:5px;}
 #logo .official, #logo .jabe{
-    max-width:28px;
-    transition: all 0.7s ease-out;
+    max-width:29.1px;
+    transition: all 0.4s ease;
     overflow: hidden;
 }
 #logo:hover .official, #logo:hover .jabe{
