@@ -1,0 +1,64 @@
+.card{
+    width:400px;
+    height:300px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    padding:20px;
+    margin:20px;
+    text-decoration: none;
+    color:white;
+    text-shadow: 1px 1px black;
+    position: relative;
+    opacity:0.8;
+    transition: all 0.3s ease-in;
+}
+.card:hover{opacity:1;}
+.card>*{
+    position: relative;
+    z-index:1;
+}
+.card .tech{
+    margin-top:auto;
+    max-height:0;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+.card p{
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.card-title{
+    color:#e67c0a;
+    transition: color 0.5s ease;
+}
+.card:hover .card-title{color:white;}
+
+.card:hover p{
+    opacity: 1;
+}
+.card:hover .tech{
+    max-height:200px;
+}
+.card .tech div{
+    background:#e67c0a;
+    padding:5px;
+    margin:10px;
+    color:white;
+    position: relative;
+}
+.card .background{
+    position: absolute;
+    z-index:0;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,0.3);
+    opacity:0;
+    transition: opacity 0.5s ease;
+}
+.card:hover .background{
+    opacity:1;
+}

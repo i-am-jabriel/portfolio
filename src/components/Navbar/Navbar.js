@@ -13,10 +13,10 @@ class Navbar extends Component{
                 <div className='jabe'><img src={jabe} alt='Jabe'/></div>
             </a>
             <div className='nav-right'>
-                <Link className='link' to='Home' spy={true} smooth={true} duration={500}>Home</Link>
-                <Link className='link' to='Works' spy={true} smooth={true} duration={500}>Works</Link>
-                <Link className='link' to='Music' spy={true} smooth={true} duration={500}>Music</Link>
-                <Link className='link' to='Connect' spy={true} smooth={true} duration={500}>Connect</Link>
+                <Link className='link' to='Home' spy={true} smooth={true}>Home</Link>
+                <Link className='link' to='Works' spy={true} smooth={true}>Works</Link>
+                <Link className='link' to='Music' spy={true} smooth={true}>Music</Link>
+                <Link className='link' to='Connect' spy={true} smooth={true}>Connect</Link>
                 <a className='link' href='http://officialjabe.info/resume.pdf' target="_blank">Resume</a>
             </div>
         </div>

@@ -1,3 +1,26 @@
+/* https://coolors.co/fef5eb-f8a64f-e67c0a-4e2a03-140b01
+#fef5eb
+#f8a64f
+#e67c0a
+#965610
+#140b01
+
+
+mids
+
+*/
+.OfficialJabe-1-hex { color: #995603; }
+.OfficialJabe-2-hex { color: #FF9C24; }
+.OfficialJabe-3-hex { color: #e67c0a; }
+.OfficialJabe-4-hex { color: #006699; }
+.OfficialJabe-5-hex { color: #39ACE6; }
+/*
+
+https://color.adobe.com/OfficialJabe-color-theme-16364153
+*/
+body{
+    line-height: 1.8;
+}
 .container{
     font-family: 'Montserrat', sans-serif;
 }
@@ -20,8 +43,17 @@ p{
 .fadein{
     animation:fadein 0.3s ease;
 }
+.alt-bg{
+    background:#006699;
+}
 .orange{
     color:#e67c0a;
+}
+.relative{
+    position:relative;
+}
+.wrap{
+    flex-wrap:wrap;
 }
 @keyframes fadein{
     0%{opacity: 0;}

@@ -3,6 +3,8 @@ import LoadingVideo from './components/LoadingVideo/LoadingVideo';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Works from './components/Works/Works';
+import Music from './components/Music/Music';
+import Connect from './components/Connect/Connect';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { Component } from 'react';
 
@@ -22,6 +24,8 @@ class App extends Component{
                 <LoadingVideo/>
                 <Home/>
                 <Works/>
+                <Music/>
+                <Connect/>
                 {/* <Router>
                     <Switch>
                     <Route exact path='/' component={Home}></Route>

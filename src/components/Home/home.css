@@ -3,6 +3,7 @@
     border-radius:10%;
     filter:grayscale(.6);
     transition: all 0.3s;
+    margin-right:20px;
 }
 #me:hover{
     filter:grayscale(0);
@@ -19,10 +20,10 @@
     max-width:600px;
 }
 .alt{
-    background-color: #e67c0a;
     color:white;
     padding:60px 0;
     margin:60px 0;
+    padding-bottom:250px;
 }
 .alt .row{
     align-items: center;
@@ -40,7 +41,49 @@
     30%{text-shadow:-2px 4px 10px  #e1821d;}
     50%{text-shadow:2px 6px 7px  #e67c0a;filter:grayscale(0.5);}
     60%{text-shadow:4px -2px 3px  #563007;}
-    70%{text-shadow:9px 5px 4px  #a56015;}
+    70%{text-shadow:9px 5px 4px  #a56015;filter:blur(2px)}
     90%{text-shadow:-2px 2px 6px  #ddb993;}
     95%{text-shadow:2px 2px 5px  #e67c0a;}
+}
+.skills{
+    display:inline-flex;
+    position:relative;
+    top:-350px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+.skills>.col{
+    border:1px solid #ddd;
+    background-color:white;
+    padding:50px 30px;
+    position: relative;
+    min-height:600px;
+}
+.skills>.col:first-child{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.skills>.col:last-child{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.skills .title{
+    color:black;
+    
+    font-size:2.8em;
+    margin-bottom:20px;
+}
+.skills svg{
+    color:#e67c0a;
+    font-size:1.5em;
+    margin-bottom:15px;
+}
+.skills .code{
+    position: absolute;
+    font-size:85%;
+    left:-.6em;
+    top:.2em;
+}
+.skills p{
+    max-width:350px;
 }
