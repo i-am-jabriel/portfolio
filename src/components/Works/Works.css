@@ -21,8 +21,9 @@
 .card .tech{
     margin-top:auto;
     max-height:0;
-    transition: all 0.5s ease;
+    transition: max-height 0.8s ease;
     overflow: hidden;
+    font-size:0.8em;
 }
 .card p{
     opacity: 0;
@@ -62,3 +63,6 @@
 .card:hover .background{
     opacity:1;
 }
+/* @keyframes hide{
+    0%{tr;}
+} */

@@ -1,16 +1,17 @@
 import './Navbar.css';
-import orange from './orange.png';
-import official from './official.png';
-import jabe from './jabe.png';
 import { Link } from 'react-scroll';
 import { Component } from 'react';
 class Navbar extends Component{
+    getClassName(){
+        if(this.props.loading)return 'navbar fixed';
+        return this.props.fixed?'navbar fixed fadein':'navbar';
+    }
     render(){ return (
-        <div className={this.props.fixed?'navbar fixed fadein':'navbar'} >
+        <div className={this.getClassName()} >
             <a id='logo' href='/'>
-                <img className='orange' src={orange}/>
-                <div className='official'><img src={official} alt='Official'/></div>
-                <div className='jabe'><img src={jabe} alt='Jabe'/></div>
+                <img className='orange' src='img/orange.png'/>
+                <div className='official'><img src='img/official.png' alt='Official'/></div>
+                <div className='jabe'><img src='img/jabe.png' alt='Jabe'/></div>
             </a>
             <div className='nav-right'>
                 <Link className='link' to='Home' spy={true} smooth={true}>Home</Link>

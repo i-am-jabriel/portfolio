@@ -1,16 +1,33 @@
-import logo from './logo.min.webm';
 import './LoadingVideo.css';
 import { Component } from 'react';
 
 class LoadingVideo extends Component{
-    componentDidMount(){
-        //Still need to sync with video
+    constructor(props){
+        super(props);
+        this.state={
+            playing:false,
+            finished:false,
+        }
+        if(this.props.skip)this.onVideoEnd();
+    }
+    onVideoLoaded(e){
+        if(this.state.finished)return;
+        e.target.play();
+        e.target.playbackRate = 2;
+        this.setState({playing:true});
+    }
+    onVideoEnd(e){
+        this.setState({
+            playing:false,
+            finished:true,
+        });
+        this.props.onVideoEnd();
     }
     render(){
        return(
-            <div id='logo-intro-wrapper'>
-                <video muted autoPlay id='logo-intro' onLoadedData={()=>console.log(this,'aiai')}>
-                    <source src={logo} type="video/webm"/>
+            <div id='logo-intro-wrapper' className={this.state.finished?'hide':''}>
+                <video muted id='logo-intro' onLoadedData={this.onVideoLoaded.bind(this)}  onEnded={this.onVideoEnd.bind(this)} className={(this.state.playing || this.state.finished) ?'playing':''}>
+                    <source src='video/logo.min.webm' type="video/webm"/>
                 </video>
             </div>
         );

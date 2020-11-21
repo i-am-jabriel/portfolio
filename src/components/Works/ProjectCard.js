@@ -1,7 +1,7 @@
 export default function ProjectCard(props){
     var img = props.image || 'https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png'
     return (
-        <a className='card col' style={{backgroundImage:`url(${img})`}} href={props.url} target='_blank'>
+        <a className={`card col ${(props.filter==null||props.tech.includes(props.filter))?'':'shrink'}`} style={{backgroundImage:`url(${img})`}} href={props.url} target='_blank'>
             <div className='background'/>
             <h2 className='card-title'>{props.title}</h2>
             <p>{props.desc}</p>
@@ -11,3 +11,4 @@ export default function ProjectCard(props){
         </a>
     )
 }
+

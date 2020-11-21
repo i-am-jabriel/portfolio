@@ -18,6 +18,10 @@ mids
 
 https://color.adobe.com/OfficialJabe-color-theme-16364153
 */
+.app.loading{
+    max-height:10px;
+    overflow: hidden;
+}
 body{
     line-height: 1.8;
 }
@@ -40,8 +44,10 @@ p{
     position: fixed;
     top:0;
 }
-.fadein{
-    animation:fadein 0.3s ease;
+
+.app-fadein{
+    animation:fadein-from-half 1s ease;
+    animation-delay:0.5s;
 }
 .alt-bg{
     background:#006699;
@@ -49,14 +55,41 @@ p{
 .orange{
     color:#e67c0a;
 }
+.blue{
+    color:#39ACE6;
+}
 .relative{
     position:relative;
 }
 .wrap{
     flex-wrap:wrap;
 }
+.shrink{
+    animation:shrink 1.5s ease forwards;
+}
+@keyframes shrink{
+    0%{transform:scale(1);}
+    100%{
+        transform:scale(0);
+        position:absolute;
+    }
+}
+
+.fadein{
+    animation:fadein 0.3s ease;
+}
 @keyframes fadein{
     0%{opacity: 0;}
     100%{opacity: 1;}
 
+}
+@keyframes scalein{
+    0%{transform: scale(1);}
+    50%{transform: scale(0.95);}
+    100%{transform: scale(1);}
+}
+@keyframes fadein-from-half{
+    0%{opacity:1;}
+    20%{opacity:0.75;}
+    100%{opacity:1;}
 }
