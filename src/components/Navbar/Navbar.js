@@ -9,7 +9,7 @@ class Navbar extends Component{
     render(){ return (
         <div className={this.getClassName()} >
             <a id='logo' href='/'>
-                <img className='orange' src='img/orange.png'/>
+                <img className='orange' src='img/orange.png' alt=''/>
                 <div className='official'><img src='img/official.png' alt='Official'/></div>
                 <div className='jabe'><img src='img/jabe.png' alt='Jabe'/></div>
             </a>
@@ -18,7 +18,7 @@ class Navbar extends Component{
                 <Link className='link' to='Works' spy={true} smooth={true}>Works</Link>
                 <Link className='link' to='Music' spy={true} smooth={true}>Music</Link>
                 <Link className='link' to='Connect' spy={true} smooth={true}>Connect</Link>
-                <a className='link' href='http://officialjabe.info/resume.pdf' target="_blank">Resume</a>
+                <a className='link' href='http://officialjabe.info/resume.pdf' target="_blank" rel='noreferrer'>Resume</a>
             </div>
         </div>
     )}

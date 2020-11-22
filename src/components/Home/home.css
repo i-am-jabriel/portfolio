@@ -9,6 +9,10 @@
 .alt p{
     max-width:550px;
 }
+.section{
+    min-height:600px;
+    padding:50px 0 180px;
+}
 .alt{
     color:white;
     padding:60px 0;
@@ -18,9 +22,7 @@
 .alt .row{
     align-items: center;
 }
-.section{
-    min-height:600px;
-}
+
 .home-hero img{
     position: relative;
     width:100%;
@@ -39,6 +41,7 @@
 .my-image-wrapper{
     cursor: pointer;
     position: relative;
+    margin:0 50px;
 }
 .my-image-wrapper img{
     position: absolute;
@@ -49,7 +52,6 @@
     border-radius:10%;
     filter:grayscale(.6);
     transition: all 0.3s;
-    margin:0 50px;
 }
 
 .my-image-wrapper img:hover{
@@ -81,6 +83,7 @@
     top:-350px;
     box-shadow:0px 0px 10px rgba(0,0,0,0.3);
     border-radius: 10px;
+    margin-bottom:-350px;
 }
 .skills>.col{
     border:1px solid #ddd;

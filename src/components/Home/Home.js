@@ -42,7 +42,7 @@ class Home extends Component{
                     <h2>Thanks for visiting my site.</h2>
                     <div className='row'>
                         <MyImage />
-                        <p>My names J Abraham Johnson. Although most the time I go by Abe or Jabe. I’m the classical millennial creative. I’ve never needed a reason to create, the love of knowledge and the quest for information is enough. Also money. I have many passions, hobbies and skills I can utilize to develop versatile solutions for all types of businesses.</p>
+                        <p>My names J Abraham Johnson. Although most the time I go by Abe or <span className='orange'>Jabe</span>. I’m the classical millennial creative. I’ve never needed a reason to create, the love of knowledge and the quest for information is enough. Also money. I have many passions, hobbies and skills I can utilize to develop versatile solutions for all types of businesses.</p>
                     </div>
                 </div>
                 <div className='col'>
@@ -55,7 +55,7 @@ class Home extends Component{
                             </div>
                             <p>I really love getting into the nuts in bolts of how things work. One of my lifes greatest joys is creating the functionionality behind a well working application</p>
                             <p className='blue'>Technology I Love Working With:</p>
-                            {['Node.js','Python', 'Ruby', 'C#', 'PSQL', 'AWS'].map(x=><p>{x}</p>)}
+                            {['Node.js','Python', 'Ruby', 'C#', 'PSQL', 'AWS'].map(x=><p key={x}>{x}</p>)}
                             <p className='blue'>I also have worked in these langauges:</p>
                             <p>MySQL, C++, MondoDB, PHP, Java</p>
                         </div>
@@ -66,7 +66,7 @@ class Home extends Component{
                             </div>
                             <p>I strive for a standard of excellence to deliver into into every product I work on. Let me bring serve your customers a beautiful experience.</p>
                             <p className='blue'>Technology I Love Working With:</p>
-                            {['JavaScript / HTML5','React.js','Bootstrap','WordPress','Photoshop', 'FontAwesome'].map(x=><p>{x}</p>)}
+                            {['JavaScript / HTML5','React.js','Bootstrap','WordPress','Photoshop', 'FontAwesome'].map(x=><p key={x}>{x}</p>)}
                             <p className='blue'>I also have have expereience with:</p>
                             <p>After Effects, Three.js, OpenShot, Youtube API</p>
                         </div>
@@ -77,7 +77,7 @@ class Home extends Component{
                             </div>
                             <p>Has someone told you your idea is too stupid or just plain impossible? If I had a life's mission it would be to transform those ideas into reality.</p>
                             <p className='blue'>Technology I Love Working With:</p>
-                            {['Unity 3D / 2D', 'FL Studio', 'Blender', 'Google Sketch', 'Virtual Reality [HTC Vive]', 'Adobe Animate'].map(x=><p>{x}</p>)}
+                            {['Unity 3D / 2D', 'FL Studio', 'Blender', 'Google Sketch', 'Virtual Reality [HTC Vive]', 'Adobe Animate'].map(x=><p key={x}>{x}</p>)}
                             <p className='blue'>I also would love a reason to work with:</p>
                             <p>Unreal Engine, Augmented Reality, An Intersection Between Code and Music</p>
                         </div>

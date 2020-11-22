@@ -1,0 +1,67 @@
+.clickable{
+    cursor: pointer;
+}
+.music-buttons > *{
+    margin:5px 20px;
+}
+
+.music-input{
+    position: absolute;
+    bottom:20px;
+    width:100%;
+    cursor: pointer;
+}
+.song-title{
+    position: absolute;
+    text-shadow:2px 2px 2px black;
+}
+.music-input,.song-title{
+    color:white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.album:hover .music-input,.album:hover .song-title{
+    opacity: 1;
+}
+.section.background{
+    transition: background 10s ease;
+}
+
+.album{position: relative;}
+.music-input input{
+    width:90%;
+}
+
+#album-video{
+    width:500px;
+    height:500px;
+}
+#album-video>*{
+    pointer-events: none;
+}
+
+.song-list{
+    min-width:550px;
+    line-height: 1.2;
+    text-align:left;
+    align-items: flex-start;
+    margin:0 40px;
+    justify-content: flex-start;
+    background-color:rgba(255,255,255,0.4);
+    padding:5px;
+    border-radius:10px;
+    box-shadow:0 0 5px black;
+}
+.song-list p{
+    margin:0;
+    padding:10px 0;
+    border-bottom:1px solid black;
+    width:100%;
+    text-align:left;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+.song-list p:hover{
+    opacity: 1;
+}
