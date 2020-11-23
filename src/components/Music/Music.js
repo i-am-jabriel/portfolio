@@ -1,10 +1,9 @@
 import { faApple, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faBackward, faForward, faPause, faPlay, faVolumeDown, faVolumeMute, faVolumeOff, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { findAllByPlaceholderText } from '@testing-library/react';
 import { useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
-import { NavLink } from 'react-router-dom';
+import {Range} from 'react-range';
 import './Music.css';
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 class Album{
@@ -31,7 +30,7 @@ export default function Music(){
     const [volume, setVolume] = useState(100);
     const [muted, setMuted] = useState(false);
     const mod = (a,b) => ((a%b)+b)%b;
-    const zero = n => n < 9?`0${n}`:n;
+    const zero = n => n <= 9?`0${n}`:n;
     const getDate = d => [zero(d.getMonth()+1), zero(d.getDate()), d.getFullYear()].join('/');
     const ref = ref => setPlayer(ref);
     const changeAlbum = i =>{
@@ -78,8 +77,21 @@ export default function Music(){
         setPaused(s);
     }
     const onChange = e =>{
-        setProgress(e.target.value);
-        setTime([secondsToTime(player.getDuration()*e.target.value*.01),secondsToTime(player.getDuration())])
+        setProgress(e[0]);
+        setTime([secondsToTime(player.getDuration()*e[0]*.01),secondsToTime(player.getDuration())]);
+        // if(window.seeking)return;
+        /*window.seeking=()=>{
+            window.removeEventListener('mouseup',window.seeking);
+            player.getInternalPlayer().seekTo(progress*.01*player.getDuration());
+        }
+        window.addEventListener('mouseup',window.seeking);*/
+        if(window.seekTimeout) window.clearTimeout(window.seekTimeout);
+        window.seekTimeout = window.setTimeout(()=>{
+            window.seekTimeout = null;
+            player.getInternalPlayer().seekTo(e[0]*.01*player.getDuration());
+        },250);
+        //player.getInternalPlayer().seekTo(e[0]*.01*player.getDuration());
+        //if(player)
     }
     const onSeek = e =>{
         player.getInternalPlayer().seekTo(progress*.01*player.getDuration());
@@ -89,8 +101,8 @@ export default function Music(){
             player.getInternalPlayer().unMute();
             setMuted(false);
         }
-        player.getInternalPlayer().setVolume(e.target.value);
-        setVolume(e.target.value);
+        player.getInternalPlayer().setVolume(e[0]);
+        setVolume(e[0]);
     }
     const toggleMute = e =>{
         var m = !muted;
@@ -107,6 +119,9 @@ export default function Music(){
     const volIcons = [faVolumeMute, faVolumeOff, faVolumeDown, faVolumeUp];
     let volIcon = volIcons[0];
     if(!muted) volIcon = volIcons[Math.ceil(volume*(volIcons.length-1)/100)];
+    var slider = {
+        backgroundColor:`#${albums[currentAlbum].color}`
+    }
     return(
         <div className='container' name='Music'>
             <div className='section col background' style={{background:`#${albums[currentAlbum].color}`}}>
@@ -129,7 +144,7 @@ export default function Music(){
                         <div className='col album clickable'>
                             <h3 className='song-title'>{songs[currentSong]}</h3>
                             <div id='album-video' onClick={clickPausePlay}>
-                                <ReactPlayer ref={ref} url={`https://youtube.com/playlist?list=${albums[currentAlbum].url}`} onReady={loadAlbumData} onEnded={nextSong} height='100%' width='100%' onPlay={play} onProgress={onProgress} config={{youtube:{playerVars:{disablekb:0, controls:0, modestbranding:1, iv_load_policy:3, rel:0}}}} style={{opacity:0}} />
+                                <ReactPlayer ref={ref} url={`https://youtube.com/playlist?list=${albums[currentAlbum].url}`} onReady={loadAlbumData} onEnded={nextSong} height='100%' width='100%' onPlay={play} onProgress={onProgress} config={{youtube:{playerVars:{disablekb:0, controls:0, modestbranding:1, iv_load_policy:3, rel:0}}}} style={{opacity:0}} progressInterval={500}/>
                                 {albumArt ? <img src={albumArt} alt={`${albums[currentAlbum].title} Artwork`} /> : null}
                             </div>
                             <div className='music-input col'>
@@ -138,12 +153,33 @@ export default function Music(){
                                     <FontAwesomeIcon icon={paused?faPlay:faPause} onClick={()=>clickPausePlay()} className='clickable' />
                                     <FontAwesomeIcon icon={faForward} onClick={()=>{jumpToSong(currentSong+1)}} className='clickable' />
                                 </div>
-                                <div className='volume-control row'>
+                                <div className='volume-control row'> 
                                     <FontAwesomeIcon icon={volIcon} onClick={toggleMute} />
-                                    <input type='range' value={volume} onChange={onChangeVol} min='0' max='100' className='clickable'/>
+                                    <span className='volume-slider'><Range type='range' values={[volume]} onChange={onChangeVol} min={0} max={100} step={0.1} className='clickable' 
+                                        renderTrack={({ props, children }) => <>
+                                            <div {...props} style={{...props.style, height: '10px',width: `100%`,backgroundColor:'#eee', position:'relative',top:'5px'}}>
+                                            <div {...props} style={{...props.style, top:0, left:0, position:'absolute', height: '10px',width: `${volume}%`,backgroundColor: `#${albums[currentAlbum].color}`, opacity:.9}}/>
+                                                {children}
+                                            </div>
+                                            </> 
+                                        } renderThumb={({ props }) => (
+                                        <div {...props} style={{...props.style,height: '15px',width: '15px',backgroundColor: `#${albums[currentAlbum].color}`,borderRadius:'100%',outline:'none'}}/>
+                                        )}
+                                    /></span>
                                 </div>
-                                <input type='range' value={progress} onChange={onChange} onMouseUp={onSeek} min='0' max='100' className='clickable seekbar'/>
-                                <p>{time.join(' - ')}</p>
+                                {//<input type='range' value={progress} onChange={onChange} onMouseUp={onSeek} min={0} max={100} className='clickable seekbar' style={slider}/>
+                                null}
+                                <span className='scrub-slider'><Range type='range' values={[progress]} onChange={onChange} min={0} max={100} step={0.1} className='clickable' 
+                                    renderTrack={({ props, children }) => <>
+                                        <div {...props} style={{...props.style, height: '10px',width: `100%`,backgroundColor:'#eee', position:'relative',top:'5px'}}>
+                                        <div {...props} style={{...props.style, top:0, left:0, position:'absolute', height: '10px',width: `${progress}%`,backgroundColor: `#${albums[currentAlbum].color}`, opacity:.9}}/>
+                                            {children}
+                                        </div>
+                                        </> 
+                                    } renderThumb={({ props }) => (
+                                    <div {...props} style={{...props.style,height: '15px',width: '15px',backgroundColor: `#${albums[currentAlbum].color}`,borderRadius:'100%',outline:'none'}}/>
+                                    )} /></span>
+                                <p>{time.join(' - ')}ㅤ</p>
                             </div>
 
                         </div>

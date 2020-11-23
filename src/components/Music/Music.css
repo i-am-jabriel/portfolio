@@ -43,25 +43,31 @@
     transition: background 10s ease;
 }
 .album{position: relative;}
-.music-input .seekbar{
+.scrub-slider{
     width:90%;
+}
+.scrub-slider div, .volume-slider div{
+    border-radius:5px;
 }
 .volume-control{
     position: absolute;
     left:15px;
     bottom:15px;
-    overflow: hidden;
+    padding:5px;
 }
 .volume-control svg{
-    width:20px!important;
+    width:25px!important;
+    margin-right:5px;
 }
-.volume-control input{
-    transition: max-width 0.5s ease;
-    max-width: 0;
+.volume-control .volume-slider{
+    transition: width 0.5s ease;
+    width: 0;
     overflow: hidden;
+    display:flex;
 }
-.volume-control:hover input{
-    max-width:100px;
+.volume-control:hover .volume-slider{
+    width:125px;
+    overflow: visible;
 }
 #album-video{position:relative;}
 #album-video, #album-video img{
@@ -113,6 +119,7 @@
     opacity: 0.5;
     transition: all 0.3s ease;
 }
+.song-list p.blue{text-shadow:1px 1px 1px rgba(144,144,144,0.3);}
 .song-list p:last-child{
     border:none;
 }
