@@ -1,17 +1,33 @@
 .clickable{
     cursor: pointer;
 }
+
+.album-view-container{
+    align-items: center;
+}
+
+
+.music-link{
+    color: #111;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.music-link:hover{
+    color:white;
+}
 .music-buttons > *{
     margin:5px 20px;
 }
 
 .music-input{
     position: absolute;
-    bottom:20px;
+    bottom:0;
     width:100%;
     cursor: pointer;
 }
+
 .song-title{
+    z-index:1;
     position: absolute;
     text-shadow:2px 2px 2px black;
 }
@@ -26,42 +42,85 @@
 .section.background{
     transition: background 10s ease;
 }
-
 .album{position: relative;}
-.music-input input{
+.music-input .seekbar{
     width:90%;
 }
-
-#album-video{
+.volume-control{
+    position: absolute;
+    left:15px;
+    bottom:15px;
+    overflow: hidden;
+}
+.volume-control svg{
+    width:20px!important;
+}
+.volume-control input{
+    transition: max-width 0.5s ease;
+    max-width: 0;
+    overflow: hidden;
+}
+.volume-control:hover input{
+    max-width:100px;
+}
+#album-video{position:relative;}
+#album-video, #album-video img{
     width:500px;
     height:500px;
+    border-radius:5px;
+    overflow: hidden;
+    box-shadow:0 0 10px black;
+}
+#album-video img{
+    z-index:0;
+    position: absolute;
+    top:0;
+    left:-39%;
+    width:auto;
+    opacity:0.7;
 }
 #album-video>*{
     pointer-events: none;
 }
 
 .song-list{
-    min-width:550px;
-    line-height: 1.2;
+    min-width:500px;
+    height:500px;
+    line-height: 1.1;
     text-align:left;
     align-items: flex-start;
     margin:0 40px;
     justify-content: flex-start;
-    background-color:rgba(255,255,255,0.4);
-    padding:5px;
-    border-radius:10px;
-    box-shadow:0 0 5px black;
+    background-color:rgba(0,0,0,0.3);
+    color:white;
+    border-radius:5px;
+    box-shadow:0 0 10px black;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.song-list::-webkit-scrollbar{
+    display: none;
 }
 .song-list p{
     margin:0;
     padding:10px 0;
     border-bottom:1px solid black;
+    text-shadow:1px 1px 1px black;
     width:100%;
     text-align:left;
     cursor: pointer;
     opacity: 0.5;
     transition: all 0.3s ease;
 }
+.song-list p:last-child{
+    border:none;
+}
+.song-list p span{
+    margin-left:15px;
+}
 .song-list p:hover{
     opacity: 1;
+    background:rgba(255,255,255,0.4)
 }
+

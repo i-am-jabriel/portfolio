@@ -5,9 +5,9 @@ import Home from './components/Home/Home';
 import Works from './components/Works/Works';
 import Music from './components/Music/Music';
 import Connect from './components/Connect/Connect';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { Component } from 'react';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import ReactTooltip from 'react-tooltip';
 
 class App extends Component{
     constructor(props){
@@ -36,6 +36,7 @@ class App extends Component{
                 <Works/>
                 <Music/>
                 <Connect/>
+                <ReactTooltip/>
                 {/* <Router>
                     <Switch>
                     <Route exact path='/' component={Home}></Route>
