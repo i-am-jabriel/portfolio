@@ -3,28 +3,47 @@ import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faDesktop, faPaintBrush, faPencilRuler } from '@fortawesome/free-solid-svg-icons'
 import MyImage from './MyImage';
+import { OrangeParticle } from '../Constants';
 // import home from './home.png'
 // import orange from './components/Navbar/orange.png';
 class Home extends Component{
-    particles = [];
-    componentWillMount(){
-        console.log('mounting');
-        window.setInterval(this.tick,100);
-        window.setTimeout(this.fireOrange,1500);
-        // this.canvas = document.getElementById('lead-canvas');
-        this.active=false;
+    constructor(props){
+        super(props);
+        this.state ={active:false};
+        this.tick = this.tick.bind(this);
+        this.fireOrange = this.fireOrange.bind(this);
+        window.setInterval(this.tick, 10);
+        window.setInterval(this.fireOrange,2000);
+        window.orangeImg = new Image();
+        window.orangeImg.className = 'orange-spin';
+        window.orangeImg.src = 'img/orange.png';
     }
-    
+    componentDidMount(){
+        this.loadCanvas({target:document.getElementById('lead-canvas')});
+    }
+    loadCanvas(e){
+        if(window.canvas)return;
+        window.canvas = e.target;
+        window.canvas.addEventListener('mousemove',e=>window.mouse={x:e.clientX,y:e.clientY});
+        window.canvas.addEventListener('mouseenter', this.setState({active:true}));
+        window.canvas.addEventListener('mouseout', this.setState({active:false}));
+        let style = getComputedStyle(window.canvas);
+        window.canvas.height = parseInt(style.height) + 40;
+        window.canvas.width = parseInt(window.outerWidth);
+        window.context = window.canvas.getContext('2d');
+        window.context.webkitImageSmoothingEnabled = window.context.imageSmoothingEnabled = false;
+        this.setState({active:true});
+    }
     tick(){
-        if(!this.active)return;
-        this.particles.forEach(particle=>{
-            particle.x += particle.dx;
-            particle.y += particle.dy;
-
-        });
+        if(!this.state.active)return;
+        window.context.clearRect(0, 0, window.canvas.width, window.canvas.height);
+        OrangeParticle.tick();
     }
     fireOrange(){
-        if(!this.active)return;
+        if(!this.state.active)return;
+        let x=Math.random() * window.canvas.width;
+        let y=Math.random() * window.canvas.height;
+        for(let i=0;i<25;i++)new OrangeParticle(x,y);
     }
     onPhotoClick(e){
         console.log(e,e.target.src,);
@@ -36,7 +55,7 @@ class Home extends Component{
                 <div className='home-hero col section'>
                     <h1 className='lead'>Software Developer, Musician & Creative</h1>
                     <p>✨Building awesome things because they are <span className='orange'>awesome</span>!</p>
-                    <canvas id='lead-canvas'></canvas>
+                    <canvas id='lead-canvas' onClick={()=>console.log(OrangeParticle.particles)}/>
                     {/* <img src={home} /> */}
                 </div>
                 <div className='alt alt-bg col section'>

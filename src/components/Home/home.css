@@ -1,4 +1,17 @@
-.home-hero{position: relative;}
+.home-hero{position: relative;z-index: 1;}
+#lead-canvas{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index:0;
+    background-color: #eee;
+}
+.home-hero .lead, .home-hero p{
+    position: relative;
+    z-index:1;
+}
 .home-hero .lead{
     font-family: 'Heebo', sans-serif;
     font-size:2.2em;
@@ -11,12 +24,12 @@
 }
 .section{
     min-height:600px;
-    padding:50px 0 180px;
+    padding:60px 0 180px;
 }
 .alt{
     color:white;
-    padding:60px 0;
-    margin:60px 0;
+    padding:120px 0;
+    margin:0;
     padding-bottom:250px;
 }
 .alt .row{
@@ -122,6 +135,18 @@
     animation:dance 2s cubic-bezier(.9,.85,.9,.85) infinite;
     animation-delay: 0.5s;
     position: relative;
+}
+.orange-spin{
+    filter: hue-rotate(180deg);
+    animation:spin .3s cubic-bezier(1,1,1,1) infinite;
+}
+@keyframes spin{
+    0%{
+        transform:rotate(0deg);
+    }
+    33%{transform:rotate(120deg);}
+    66%{transform:rotate(240deg);}
+    100%{transform:rotate(360deg);}
 }
 @keyframes dance{
     0%,50%,100%{

@@ -1,6 +1,5 @@
 import { zero, mod, albums, getDate, timeline, Album } from '../Constants';
 export default function Journey(props){
-    console.log(timeline.length);
     return (
         <div className='music-journey'>
             <h2 className='music-journey-title'>Heres a timeline of my life through the lense of my music:</h2>

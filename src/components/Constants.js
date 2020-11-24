@@ -17,6 +17,49 @@ export class TimelineDate{
         Object.assign(this,{data});
     }
 }
+export class OrangeParticle{
+    constructor(x,y,size){
+        Object.assign(this,{x:x||100,y:y||100,size:size||Math.random()*30+10,gy:0});
+        this.dx=Math.random()*6-3;
+        this.dy=Math.random()*7-10;
+        this.ddx = Math.random()*.05 - .025;
+        this.speed = Math.random() + 1;
+        this.dSpeed = Math.random()*.02 + .99;
+        this.ddy = 1;
+        OrangeParticle.particles.push(this);
+        window.setTimeout(()=>{
+            if(this)this.destroy();
+        },10000);
+    }
+    static particles = [];
+    static modes = ['tickGravityExplosion', 'tickChaseMouse'];
+    static currentMode  = 1;
+    //static mode = ;
+    static gravityRate = .15;
+    static get mode() {return OrangeParticle.modes[OrangeParticle.currentMode] }
+    static tick(){
+        OrangeParticle.particles.forEach(p=>{
+            p[OrangeParticle.mode]();
+            if(!p.inView)p.destroy();
+            else window.context.drawImage(window.orangeImg,this.x,this.y,this.size,this.size);
+        });
+    }
+    tickGravityExplosion(){
+        this.x += (this.dx += this.ddx);
+        this.y += this.dy + (this.gy += OrangeParticle.gravityRate);
+    }
+    tickChaseMouse(){
+        this.theta = this.theta || Math.random() * Math.pi * 2;
+        if(window.mouse) this.theta = Math.atan2(this.y-window.mouse.y,this.x-window.mouse.x);
+        this.x += Math.sin(this.theta) * (this.speed *= this.dSpeed);
+        this.y += Math.cos(this.theta) * (this.speed *= this.dSpeed);
+    }
+    destroy(){
+        var i = OrangeParticle.particles.indexOf(this);
+        if(i!=-1) OrangeParticle.particles.splice(i,1);
+    }
+    get inView(){ return this.x > -200 && this.x < window.canvas.width + 200 && this.y > - 200 && this. y < window.canvas.height + 200; }
+}
 export const albums = [
     new Album('Interactive Media Vol 4','OLAK5uy_n_o2JTUf6HmmKX0CKXl8rrdSh5Vs0Y-Xs', new Date('6-13-2020'),'4e281f'),
     new Album('Heart.Piece','OLAK5uy_k5D9EQ1lmG_SHNFanfIAZznRv5viWdeIo', new Date('5-13-2020'),'452c58'),
