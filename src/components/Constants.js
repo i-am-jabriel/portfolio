@@ -33,7 +33,7 @@ export class OrangeParticle{
     }
     static particles = [];
     static modes = ['tickGravityExplosion', 'tickChaseMouse'];
-    static currentMode  = 1;
+    static currentMode  = 0;
     //static mode = ;
     static gravityRate = .15;
     static get mode() {return OrangeParticle.modes[OrangeParticle.currentMode] }
