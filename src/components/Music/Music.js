@@ -4,23 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
 import {Range} from 'react-range';
+import { zero, mod, albums, getDate } from '../Constants';
 import './Music.css';
+import Journey from './Journey';
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-class Album{
-    constructor(title,url,date,color){
-        Object.assign(this,{title,url,date,color});
-    }
-}
 export default function Music(){
-    const albums = [
-        new Album('Interactive Media Vol 4','OLAK5uy_n_o2JTUf6HmmKX0CKXl8rrdSh5Vs0Y-Xs', new Date('6-13-2020'),'4e281f'),
-        new Album('Heart.Piece','OLAK5uy_k5D9EQ1lmG_SHNFanfIAZznRv5viWdeIo', new Date('5-13-2020'),'452c58'),
-        new Album('Interactive Media Vol 3','OLAK5uy_kShipkcvKwBkG1ZQ6rGfJ95hEXdPg5iRE', new Date('2-13-2020'),'08403b'),
-        new Album('Kameha\'i','OLAK5uy_mZvKv7U6Gw9lGIULBywGVIu4idaUhsQV4', new Date('1-13-2020'),'606060'),
-        new Album('MamaMia (Original Game Soundtrack)','OLAK5uy_nGqJ_W3PqWIWpi3q4ZOkslRxIghqSixLI', new Date('9-13-2019'),'ffeac5')
-    ];
+    
+    //const getDateForTimeline = d => [d.getFullYear(), zero(d.getMonth()+1), zero(d.getDate())].join('-');
+    //const albumDates = albums.map(a=>getDateForTimeline(a.date));
     let [currentAlbum, setCurrentAlbum] = useState(0);
     let [currentSong, setCurrentSong]  = useState(0);
+    let [timeline, setTimeline] = useState(0);
     const [albumArt, setAlbumArt] = useState('');
     const [time, setTime] = useState([])
     const [songs, setSongs] = useState([]);
@@ -29,10 +23,11 @@ export default function Music(){
     const [progress, setProgress] = useState(0);
     const [volume, setVolume] = useState(100);
     const [muted, setMuted] = useState(false);
-    const mod = (a,b) => ((a%b)+b)%b;
-    const zero = n => n <= 9?`0${n}`:n;
-    const getDate = d => [zero(d.getMonth()+1), zero(d.getDate()), d.getFullYear()].join('/');
     const ref = ref => setPlayer(ref);
+    const setAlbum = i =>{
+        currentAlbum = i;
+        changeAlbum(0);
+    }
     const changeAlbum = i =>{
         currentAlbum=mod(currentAlbum+i,albums.length);
         setCurrentSong(0);
@@ -139,12 +134,13 @@ export default function Music(){
                     <FontAwesomeIcon icon={faForward} onClick={()=>{changeAlbum(1)}} data-tip='Next Album' className='clickable music-link' />
                 </div>
                 <div className='col album-container'>
-                    <p>{getDate(albums[currentAlbum].date)}</p>
+                    {/* {<p>{getDate(albums[currentAlbum].date)}</p>} */}
+                    <Journey index={currentAlbum} onClickIndex={i=>setAlbum(i)}/>
                     <div className='row'>
                         <div className='col album clickable'>
                             <h3 className='song-title'>{songs[currentSong]}</h3>
                             <div id='album-video' onClick={clickPausePlay}>
-                                <ReactPlayer ref={ref} url={`https://youtube.com/playlist?list=${albums[currentAlbum].url}`} onReady={loadAlbumData} onEnded={nextSong} height='100%' width='100%' onPlay={play} onProgress={onProgress} config={{youtube:{playerVars:{disablekb:0, controls:0, modestbranding:1, iv_load_policy:3, rel:0}}}} style={{opacity:0}} progressInterval={500}/>
+                                <ReactPlayer ref={ref} url={`https://youtube.com/playlist?list=${albums[currentAlbum].url}`} onReady={loadAlbumData} onEnded={nextSong} containerHeight='100%' containerWidth='100%' onPlay={play} onProgress={onProgress} config={{youtube:{playerVars:{disablekb:0, controls:0, modestbranding:1, iv_load_policy:3, rel:0}}}} style={{opacity:0}} progressInterval={500}/>
                                 {albumArt ? <img src={albumArt} alt={`${albums[currentAlbum].title} Artwork`} /> : null}
                             </div>
                             <div className='music-input col'>

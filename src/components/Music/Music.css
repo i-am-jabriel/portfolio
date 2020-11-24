@@ -5,7 +5,18 @@
 .album-view-container{
     align-items: center;
 }
-
+.timeline-data{
+    font-size:1.5em;
+    padding:.5em;
+    margin:10px;
+    line-height: 1;
+    cursor:pointer;
+    position: relative;
+    top:-20px;
+}
+.timeline-data:hover,.timeline-data.active{
+    color:white;
+}
 
 .music-link{
     color: #111;
@@ -51,9 +62,9 @@
 }
 .volume-control{
     position: absolute;
-    left:15px;
-    bottom:15px;
-    padding:5px;
+    left:0px;
+    bottom:0px;
+    padding:20px;
 }
 .volume-control svg{
     width:25px!important;
@@ -117,17 +128,18 @@
     text-align:left;
     cursor: pointer;
     opacity: 0.5;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease-out;
 }
-.song-list p.blue{text-shadow:1px 1px 1px rgba(144,144,144,0.3);}
+.song-list p:hover{transform:scaleY(1.1);padding-left:10px}
+.song-list p.blue{text-shadow:1px 1px 1px rgba(180,180,180,0.3);}
 .song-list p:last-child{
     border:none;
 }
 .song-list p span{
     margin-left:15px;
 }
-.song-list p:hover{
+.song-list p:hover,.song-list p.blue{
     opacity: 1;
-    background:rgba(255,255,255,0.4)
+    background:rgba(150,150,150,0.3)
 }
 

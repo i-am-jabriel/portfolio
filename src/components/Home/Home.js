@@ -8,6 +8,7 @@ import MyImage from './MyImage';
 class Home extends Component{
     particles = [];
     componentWillMount(){
+        console.log('mounting');
         window.setInterval(this.tick,100);
         window.setTimeout(this.fireOrange,1500);
         // this.canvas = document.getElementById('lead-canvas');

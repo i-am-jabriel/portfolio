@@ -42,39 +42,33 @@
     cursor: pointer;
     position: relative;
     margin:0 50px;
-}
-.my-image-wrapper img{
-    position: absolute;
-    top:0;
-    left:0;
-    width:180px;
-    height:250px;
-    border-radius:10%;
-    filter:grayscale(.6);
     transition: all 0.3s;
+    filter:grayscale(.6);
 }
-
-.my-image-wrapper img:hover{
+.my-image-wrapper:hover{
     filter:grayscale(0);
 }
 .my-image-wrapper .drawing-wrapper{
     position: relative;
     width:180px;
     height:250px;   
+    padding:40px;
 }
 .my-image-wrapper .drawing-wrapper *{
     position: absolute;
-    top:0;
-    left:0;
     width:180px;
     height:250px;
 }
 .drawing-wrapper .drawing{
     overflow: hidden;
+    top:40px;
+    left:40px;
 }
-.my-image-wrapper .outline{
+ .my-image-wrapper .outline{
     width:210px;
     height:270px;
+    top:40px;
+    left:40px;
 
 }
 .my-image-wrapper .drawing{
@@ -123,4 +117,28 @@
 }
 .skills p{
     max-width:350px;
+}
+.dancing{
+    animation:dance 2s cubic-bezier(.9,.85,.9,.85) infinite;
+    animation-delay: 0.5s;
+    position: relative;
+}
+@keyframes dance{
+    0%,50%,100%{
+        top:0px;
+        transform:rotate(0deg);
+        left:0px;
+    }
+    25%{
+        top:20px;
+        transform:rotate(-20deg);
+        left:-45px;
+        
+    }
+    75%{
+        top:20px;
+        left:45px;
+        transform:rotate(20deg)
+    }
+
 }

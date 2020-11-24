@@ -26,8 +26,7 @@ class MyImage extends Component{
         }
         return (
             <div className='my-image-wrapper row'>
-                
-                <div className='drawing-wrapper' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
+                <div className={`drawing-wrapper${this.state.drawing&&this.state.hover?' dancing':''}`} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
                     { this.state.drawing ?
                         [<img src='img/abeoutline.svg' className='outline' alt='Drawing of me'/>,
                             this.state.hover ? 
