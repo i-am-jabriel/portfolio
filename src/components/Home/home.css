@@ -136,7 +136,7 @@
     animation-delay: 0.5s;
     position: relative;
 }
-.orange-spin{
+/*.orange-spin{
     filter: hue-rotate(180deg);
     animation:spin .3s cubic-bezier(1,1,1,1) infinite;
 }
@@ -147,7 +147,7 @@
     33%{transform:rotate(120deg);}
     66%{transform:rotate(240deg);}
     100%{transform:rotate(360deg);}
-}
+}*/
 @keyframes dance{
     0%,50%,100%{
         top:0px;

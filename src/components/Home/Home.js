@@ -23,6 +23,7 @@ class Home extends Component{
     }
     loadCanvas(e){
         if(window.canvas)return;
+        console.log('canvas loaded');
         window.canvas = e.target;
         window.canvas.addEventListener('mousemove',e=>window.mouse={x:e.clientX,y:e.clientY});
         window.canvas.addEventListener('mouseenter', this.setState({active:true}));

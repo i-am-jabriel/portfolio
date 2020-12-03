@@ -1,0 +1,12 @@
+.socials{
+    font-size:2em;
+}
+.socials a,.social svg{    
+    transition: all .3s ease;
+}
+.socials a:hover, .socials svg:hover{
+    color:black!important;
+}
+.email,.socials i{
+    text-decoration: none;
+}

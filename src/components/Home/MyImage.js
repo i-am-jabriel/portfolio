@@ -28,10 +28,10 @@ class MyImage extends Component{
             <div className='my-image-wrapper row'>
                 <div className={`drawing-wrapper${this.state.drawing&&this.state.hover?' dancing':''}`} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
                     { this.state.drawing ?
-                        [<img src='img/abeoutline.svg' className='outline' alt='Drawing of me'/>,
-                            this.state.hover ? 
-                                (<motion.div initial='hidden' animate='visible' variants={style} className='drawing'  transition={ {type:'spring'} }> <img alt='' src='img/abe2.png' /></motion.div>):null,
-                        ]:
+                        <><img src='img/abeoutline.svg' className='outline' alt='Drawing of me'/>
+                            {this.state.hover ? 
+                                (<motion.div initial='hidden' animate='visible' variants={style} className='drawing'  transition={ {type:'spring'} }> <img alt='' src='img/abe2.png' /></motion.div>):null}
+                        </>:
                         (<img src='img/abe.png' alt='Picture of me'/>)
                     }
                 </div>
