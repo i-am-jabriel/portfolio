@@ -5,12 +5,12 @@
     left:0;
     height:100%;
     width:100%;
-    z-index:0;
-    background-color: #eee;
+    z-index:2;
+    background-color: #ccc;
 }
 .home-hero .lead, .home-hero p{
     position: relative;
-    z-index:1;
+    z-index:3;
 }
 .home-hero .lead{
     font-family: 'Heebo', sans-serif;

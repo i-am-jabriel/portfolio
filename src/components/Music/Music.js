@@ -136,12 +136,13 @@ export default function Music(){
                 <div className='col album-container'>
                     {/* {<p>{getDate(albums[currentAlbum].date)}</p>} */}
                     <Journey index={currentAlbum} onClickIndex={i=>setAlbum(i)}/>
-                    <div className='row'>
+                    <div className='row wrap'>
                         <div className='col album clickable'>
                             <h3 className='song-title'>{songs[currentSong]}</h3>
                             <div id='album-video' onClick={clickPausePlay}>
                                 <ReactPlayer ref={ref} url={`https://youtube.com/playlist?list=${albums[currentAlbum].url}`} onReady={loadAlbumData} onEnded={nextSong} containerHeight='100%' containerWidth='100%' onPlay={play} onProgress={onProgress} config={{youtube:{playerVars:{disablekb:0, controls:0, modestbranding:1, iv_load_policy:3, rel:0}}}} style={{opacity:0}} progressInterval={500}/>
                                 {albumArt ? <img src={albumArt} alt={`${albums[currentAlbum].title} Artwork`} /> : null}
+                                <div className='overlay'/>
                             </div>
                             <div className='music-input col'>
                                 <div className='music-buttons row'>

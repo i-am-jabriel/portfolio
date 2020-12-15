@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, createRef } from 'react';
 import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faDesktop, faPaintBrush, faPencilRuler } from '@fortawesome/free-solid-svg-icons'
@@ -12,28 +12,26 @@ class Home extends Component{
         this.state ={active:false};
         this.tick = this.tick.bind(this);
         this.fireOrange = this.fireOrange.bind(this);
-        window.setInterval(this.tick, 10);
-        window.setInterval(this.fireOrange,2000);
+        window.setInterval(this.tick, 25);
+        window.setInterval(this.fireOrange,500);
         window.orangeImg = new Image();
         window.orangeImg.className = 'orange-spin';
         window.orangeImg.src = 'img/orange.png';
+        this.canvas = createRef();
     }
-    componentDidMount(){
-        this.loadCanvas({target:document.getElementById('lead-canvas')});
-    }
-    loadCanvas(e){
+
+    componentDidUpdate(){
         if(window.canvas)return;
-        console.log('canvas loaded');
-        window.canvas = e.target;
+        window.canvas=this.canvas.current;
+        window.context = window.canvas.getContext('2d');
+        window.context.fillStyle = "#000";
         window.canvas.addEventListener('mousemove',e=>window.mouse={x:e.clientX,y:e.clientY});
-        window.canvas.addEventListener('mouseenter', this.setState({active:true}));
-        window.canvas.addEventListener('mouseout', this.setState({active:false}));
+        window.canvas.addEventListener('mouseenter',()=> this.setState({active:true}));
+        window.canvas.addEventListener('mouseout', ()=>this.setState({active:false}));
         let style = getComputedStyle(window.canvas);
         window.canvas.height = parseInt(style.height) + 40;
         window.canvas.width = parseInt(window.outerWidth);
-        window.context = window.canvas.getContext('2d');
         window.context.webkitImageSmoothingEnabled = window.context.imageSmoothingEnabled = false;
-        this.setState({active:true});
     }
     tick(){
         if(!this.state.active)return;
@@ -44,7 +42,7 @@ class Home extends Component{
         if(!this.state.active)return;
         let x=Math.random() * window.canvas.width;
         let y=Math.random() * window.canvas.height;
-        for(let i=0;i<25;i++)new OrangeParticle(x,y);
+        for(let i=0;i<10;i++)new OrangeParticle(x,y);
     }
     onPhotoClick(e){
         console.log(e,e.target.src,);
@@ -56,7 +54,7 @@ class Home extends Component{
                 <div className='home-hero col section'>
                     <h1 className='lead'>Software Developer, Musician & Creative</h1>
                     <p>✨Building awesome things because they are <span className='orange'>awesome</span>!</p>
-                    <canvas id='lead-canvas' onClick={()=>console.log(OrangeParticle.particles)}/>
+                    <canvas id='lead-canvas' onClick={()=>console.log(OrangeParticle.particles)} ref={this.canvas}/>
                     {/* <img src={home} /> */}
                 </div>
                 <div className='alt alt-bg col section'>
@@ -85,7 +83,7 @@ class Home extends Component{
                                 <FontAwesomeIcon icon={faPencilRuler} />
                                 Front End
                             </div>
-                            <p>I strive for a standard of excellence to deliver into into every product I work on. Let me bring serve your customers a beautiful experience.</p>
+                            <p>I strive for a standard of excellence to deliver into into every product I work on. Let me serve your customers an a unique beautiful experience.</p>
                             <p className='blue'>Technology I Love Working With:</p>
                             {['JavaScript / HTML5','React.js','Bootstrap','WordPress','Photoshop', 'FontAwesome'].map(x=><p key={x}>{x}</p>)}
                             <p className='blue'>I also have have expereience with:</p>
@@ -100,7 +98,7 @@ class Home extends Component{
                             <p className='blue'>Technology I Love Working With:</p>
                             {['Unity 3D / 2D', 'FL Studio', 'Blender', 'Google Sketch', 'Virtual Reality [HTC Vive]', 'Adobe Animate'].map(x=><p key={x}>{x}</p>)}
                             <p className='blue'>I also would love a reason to work with:</p>
-                            <p>Unreal Engine, Augmented Reality, An Intersection Between Code and Music</p>
+                            <p>Unreal Engine, Augmented Reality, Anything that utilizes code and music</p>
                         </div>
                     </div>
                 </div>
