@@ -3,7 +3,7 @@ import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faDesktop, faPaintBrush, faPencilRuler } from '@fortawesome/free-solid-svg-icons'
 import MyImage from './MyImage';
-import { mod, OrangeParticle } from '../Constants';
+import { OrangeParticle } from '../Constants';
 // import home from './home.png'
 // import orange from './components/Navbar/orange.png';
 class Home extends Component{
@@ -25,10 +25,10 @@ class Home extends Component{
         window.canvas=this.canvas.current;
         window.context = window.canvas.getContext('2d');
         window.context.fillStyle = "#000";
-        window.canvas.addEventListener('mousemove',e=>window.mouse={x:e.clientX,y:e.clientY});
+        window.canvas.addEventListener('mousemove',e=>window.mouse={x:e.clientX,y:e.clientY-35});
         window.canvas.addEventListener('mouseenter',()=> this.setState({active:true}));
-        window.canvas.addEventListener('mouseleave', ()=>this.setState({active:false}));
-        window.canvas.addEventListener('click',()=>OrangeParticle.currentMode = mod(OrangeParticle.currentMode+1,OrangeParticle.modes.length));
+        document.querySelector('.alt.alt-bg').addEventListener('mouseenter', ()=>this.setState({active:false}));
+        window.canvas.addEventListener('click',OrangeParticle.nextMode);
         let style = getComputedStyle(window.canvas);
         window.canvas.height = parseInt(style.height) + 40;
         window.canvas.width = parseInt(window.outerWidth);

@@ -19,11 +19,11 @@ export class TimelineDate{
 }
 export class OrangeParticle{
     constructor(x,y,size){
-        Object.assign(this,{x:x||100,y:y||100,size:size||Math.random()*30+10,gy:0});
+        Object.assign(this,{theta:0},{x:x||100,y:y||100,size:size||Math.random()*30+10,gy:0});
         this.dx=Math.random()*6-3;
         this.dy=Math.random()*7-10;
         this.ddx = Math.random()*.05 - .025;
-        this.speed = Math.random()*1 + 1;
+        this.speed = Math.random()*4 + 2;
         //this.dSpeed = Math.random()*.03 * (Math.random()>=.5?-1:1) + 1;
 
         this.ddy = 1;
@@ -36,16 +36,22 @@ export class OrangeParticle{
     static modes = ['tickGravityExplosion', 'tickChaseMouse'];
     static currentMode  = 0;
     static dSpeed = 1.01;
-    static maxSpeed = 50;
+    static maxSpeed = 120;
+    static turnSpeed = 0.2;
     //static mode = ;
     static gravityRate = .15;
     static get mode() {return OrangeParticle.modes[OrangeParticle.currentMode] }
+    static nextMode(){
+        OrangeParticle.currentMode = mod(OrangeParticle.currentMode+1,OrangeParticle.modes.length);
+        if(OrangeParticle.currentMode == 1)OrangeParticle.dSpeed = 1.01;
+    }
     static tick(){
+        if(OrangeParticle.currentMode == 1)OrangeParticle.dSpeed+=.01;
         OrangeParticle.particles.forEach(p=>{
             p[OrangeParticle.mode]();
             if(!p.inView)p.destroy();
             else {
-                window.context.drawImage(window.orangeImg,p.x,p.y,p.size,p.size);
+                window.context.drawImage(window.orangeImg,p.x+p.size*.5,p.y+p.size*.5,p.size,p.size);
                 window.context.arc(p.x,p.y,p.size,0,Math.PI*2);
             }
         });
@@ -55,10 +61,13 @@ export class OrangeParticle{
         this.y += this.dy + (this.gy += OrangeParticle.gravityRate);
     }
     tickChaseMouse(){
-        this.theta = this.theta || Math.random() * Math.PI * 2;
-        if(window.mouse) this.theta = Math.atan2(this.x-window.mouse.x,this.y-window.mouse.y) + Math.PI;
-        this.x += Math.sin(this.theta) * (this.speed=Math.min(this.speed * OrangeParticle.dSpeed, OrangeParticle.maxSpeed));
-        this.y += Math.cos(this.theta) * this.speed;
+        const speed = Math.min(this.speed * OrangeParticle.dSpeed, OrangeParticle.maxSpeed);
+        let theta = this.theta || Math.random() * Math.PI * 2;
+        if(window.mouse) theta = Math.atan2(this.x-window.mouse.x,this.y-window.mouse.y) + Math.PI;
+        this.theta = lerpRadian(this.theta,theta,OrangeParticle.turnSpeed);
+
+        this.x += Math.sin(this.theta) * speed;
+        this.y += Math.cos(this.theta) * speed;
     }
     destroy(){
         var i = OrangeParticle.particles.indexOf(this);
@@ -78,3 +87,12 @@ export const timeline = ([]).concat(albums).sort((a,b)=>b.date-a.date);
 export const mod = (a,b) => ((a%b)+b)%b;
 export const zero = n => n <= 9?`0${n}`:n;
 export const getDate = d => [zero(d.getMonth()+1), zero(d.getDate()), d.getFullYear()].join('/');
+export const lerp = (v0, v1, t) => v0*(1-t)+v1*t;
+export function lerpAngle(a,b,t){
+    let shortest_angle = mod((b-a) + 180,360) - 180;
+    return a + mod(shortest_angle * t, 360);
+}
+export function lerpRadian(a,b,t){
+    let shortest_angle = mod((b-a) + Math.PI,Math.PI * 2) - Math.PI;
+    return a + mod(shortest_angle * t, 360);
+}
