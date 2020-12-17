@@ -23,8 +23,9 @@ export class OrangeParticle{
         this.dx=Math.random()*6-3;
         this.dy=Math.random()*7-10;
         this.ddx = Math.random()*.05 - .025;
-        this.speed = Math.random() + 1;
-        this.dSpeed = Math.random()*.02 + .99;
+        this.speed = Math.random()*1 + 1;
+        //this.dSpeed = Math.random()*.03 * (Math.random()>=.5?-1:1) + 1;
+
         this.ddy = 1;
         OrangeParticle.particles.push(this);
         window.setTimeout(()=>{
@@ -34,6 +35,8 @@ export class OrangeParticle{
     static particles = [];
     static modes = ['tickGravityExplosion', 'tickChaseMouse'];
     static currentMode  = 0;
+    static dSpeed = 1.01;
+    static maxSpeed = 50;
     //static mode = ;
     static gravityRate = .15;
     static get mode() {return OrangeParticle.modes[OrangeParticle.currentMode] }
@@ -42,8 +45,8 @@ export class OrangeParticle{
             p[OrangeParticle.mode]();
             if(!p.inView)p.destroy();
             else {
-                window.context.drawImage(window.orangeImg,this.x,this.y,this.size,this.size);
-                window.context.arc(-this.x,-this.y,this.size*100,0,Math.PI*2);
+                window.context.drawImage(window.orangeImg,p.x,p.y,p.size,p.size);
+                window.context.arc(p.x,p.y,p.size,0,Math.PI*2);
             }
         });
     }
@@ -52,10 +55,10 @@ export class OrangeParticle{
         this.y += this.dy + (this.gy += OrangeParticle.gravityRate);
     }
     tickChaseMouse(){
-        this.theta = this.theta || Math.random() * Math.pi * 2;
-        if(window.mouse) this.theta = Math.atan2(this.y-window.mouse.y,this.x-window.mouse.x);
-        this.x += Math.sin(this.theta) * (this.speed *= this.dSpeed);
-        this.y += Math.cos(this.theta) * (this.speed *= this.dSpeed);
+        this.theta = this.theta || Math.random() * Math.PI * 2;
+        if(window.mouse) this.theta = Math.atan2(this.x-window.mouse.x,this.y-window.mouse.y) + Math.PI;
+        this.x += Math.sin(this.theta) * (this.speed=Math.min(this.speed * OrangeParticle.dSpeed, OrangeParticle.maxSpeed));
+        this.y += Math.cos(this.theta) * this.speed;
     }
     destroy(){
         var i = OrangeParticle.particles.indexOf(this);
