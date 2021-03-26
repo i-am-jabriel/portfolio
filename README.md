@@ -1,6 +1,6 @@
 # A repo to share the source of my portfolio website
 
-<div class='col'>
+<div align='center'>
 
 [officialjabe.info](http://officialjabe.info)
 
@@ -11,11 +11,3 @@ Made in React.js and Utilizes Youtube Embed Player API
 Feel free to use any part of my code for any project you see fit for as long as this project is public
 
 </div>
-
-<style>
-.col{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-</style>
