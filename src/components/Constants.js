@@ -76,12 +76,13 @@ export class OrangeParticle{
     get inView(){ return this.x > -200 && this.x < window.canvas.width + 200 && this.y > - 200 && this. y < window.canvas.height + 200; }
 }
 export const albums = [
-    new Album('Interactive Media Vol 5','PLSxQ7vW8zqni5fMrearPRq79Sx8CcVMHU', new Date('12-13-2020'),'4e441c'),
-    new Album('Interactive Media Vol 4','OLAK5uy_n_o2JTUf6HmmKX0CKXl8rrdSh5Vs0Y-Xs', new Date('6-13-2020'),'4e281f'),
-    new Album('Heart.Piece','OLAK5uy_k5D9EQ1lmG_SHNFanfIAZznRv5viWdeIo', new Date('5-13-2020'),'452c58'),
-    new Album('Interactive Media Vol 3','OLAK5uy_kShipkcvKwBkG1ZQ6rGfJ95hEXdPg5iRE', new Date('2-13-2020'),'08403b'),
-    new Album('Kameha\'i','OLAK5uy_mZvKv7U6Gw9lGIULBywGVIu4idaUhsQV4', new Date('1-13-2020'),'606060'),
-    new Album('MamaMia (Original Game Soundtrack)','OLAK5uy_nGqJ_W3PqWIWpi3q4ZOkslRxIghqSixLI', new Date('9-13-2019'),'cfbaa5')
+    new Album('Perfect Timeless Music', 'OLAK5uy_msAMrM0YEi0WnWy3n0_--GGsA8Pmu3TKg', new Date(2021, 2, 13), '2c3c4d'),
+    new Album('Interactive Media Vol 5','PLSxQ7vW8zqni5fMrearPRq79Sx8CcVMHU', new Date(2020, 11 ,13),'4e441c'),
+    new Album('Interactive Media Vol 4','OLAK5uy_n_o2JTUf6HmmKX0CKXl8rrdSh5Vs0Y-Xs', new Date(2020, 5, 13),'4e281f'),
+    new Album('Heart.Piece','OLAK5uy_k5D9EQ1lmG_SHNFanfIAZznRv5viWdeIo', new Date(2020, 4, 13),'452c58'),
+    new Album('Interactive Media Vol 3','OLAK5uy_kShipkcvKwBkG1ZQ6rGfJ95hEXdPg5iRE', new Date(2020, 1, 13),'08403b'),
+    new Album('Kameha\'i','OLAK5uy_mZvKv7U6Gw9lGIULBywGVIu4idaUhsQV4', new Date(2020, 0, 13),'606060'),
+    new Album('MamaMia (Original Game Soundtrack)','OLAK5uy_nGqJ_W3PqWIWpi3q4ZOkslRxIghqSixLI', new Date(2019, 8, 13),'cfbaa5')
 ];
 export const timeline = ([]).concat(albums).sort((a,b)=>b.date-a.date);
 export const mod = (a,b) => ((a%b)+b)%b;

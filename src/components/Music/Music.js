@@ -1,7 +1,7 @@
 import { faApple, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faBackward, faForward, faPause, faPlay, faVolumeDown, faVolumeMute, faVolumeOff, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
 import {Range} from 'react-range';
 import { zero, mod, albums, getDate } from '../Constants';
@@ -29,9 +29,8 @@ export default function Music(){
         changeAlbum(0);
     }
     const changeAlbum = i =>{
-        currentAlbum=mod(currentAlbum+i,albums.length);
         setCurrentSong(0);
-        setCurrentAlbum(currentAlbum);
+        setCurrentAlbum(mod(currentAlbum + i, albums.length));
         loadAlbumData();
         setProgress(0);
         setPaused(false);
@@ -42,14 +41,18 @@ export default function Music(){
     }
     const loadAlbumData= e =>{
         // player.innerHTML+=`<style></style>`;
+    }
+    useEffect(()=>{
         fetch(`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyDRYYxfh4AJqg5Jx6Y72_RU5WgOCD4gL40&playlistId=${albums[currentAlbum].url}&maxResults=20&part=snippet`)
             .then(res=>res.json())
             .then(res=>{
-                console.log(res);
+                // console.log(res);
                 setSongs(res.items.map(x=>x.snippet.title));
                 setAlbumArt(res.items[0].snippet.thumbnails.maxres.url);
+                player.getInternalPlayer().loadPlaylist(albums[currentAlbum].url);
             });
-    }
+        // console.log(albums[currentAlbum]);
+    }, [currentAlbum]);
     const jumpToSong = i =>{
         setCurrentSong(i);
         setProgress(0);
@@ -140,7 +143,7 @@ export default function Music(){
                         <div className='col album clickable'>
                             <h3 className='song-title'>{songs[currentSong]}</h3>
                             <div id='album-video' onClick={clickPausePlay}>
-                                <ReactPlayer ref={ref} url={`https://youtube.com/playlist?list=${albums[currentAlbum].url}`} onReady={loadAlbumData} onEnded={nextSong} containerHeight='100%' containerWidth='100%' onPlay={play} onProgress={onProgress} config={{youtube:{playerVars:{disablekb:0, controls:0, modestbranding:1, iv_load_policy:3, rel:0}}}} style={{opacity:0}} progressInterval={500}/>
+                                <ReactPlayer ref={ref} url={`https://youtube.com/playlist?list=${albums[currentAlbum].url}`} onReady={loadAlbumData} onEnded={nextSong} onPlay={play} onProgress={onProgress} config={{youtube:{playerVars:{disablekb:0, controls:0, modestbranding:1, iv_load_policy:3, rel:0}}}} style={{opacity:0}} progressInterval={500}/>
                                 {albumArt ? <img src={albumArt} alt={`${albums[currentAlbum].title} Artwork`} /> : null}
                                 <div className='overlay'/>
                             </div>
