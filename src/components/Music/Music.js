@@ -49,6 +49,7 @@ export default function Music(){
                 // console.log(res);
                 setSongs(res.items.map(x=>x.snippet.title));
                 setAlbumArt(res.items[0].snippet.thumbnails.maxres.url);
+                if(!player.getInternalPlayer)return;
                 player?.getInternalPlayer()?.loadPlaylist(albums[currentAlbum].url);
             });
         // console.log(albums[currentAlbum]);

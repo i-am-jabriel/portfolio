@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faDesktop, faPaintBrush, faPencilRuler } from '@fortawesome/free-solid-svg-icons'
 import MyImage from './MyImage';
 import { OrangeParticle } from '../Constants';
+import AnimatedIcon from './AnimatedIcon';
 // import home from './home.png'
 // import orange from './components/Navbar/orange.png';
 class Home extends Component{
@@ -69,8 +70,7 @@ class Home extends Component{
                     <div className='row skills'>
                         <div className='col'>
                             <div className='title col'>    
-                                <span className='relative'><FontAwesomeIcon icon={faCode} className='code'/></span>
-                                <FontAwesomeIcon icon={faDesktop} />
+                                <AnimatedIcon type='backEnd'/>
                                 Back End
                             </div>
                             <p>I really love getting into the nuts in bolts of how things work. One of my lifes greatest joys is creating the functionionality behind a well working application</p>
@@ -81,7 +81,7 @@ class Home extends Component{
                         </div>
                         <div className='col'>
                             <div className='title col'>
-                                <FontAwesomeIcon icon={faPencilRuler} />
+                                <AnimatedIcon type='frontEnd'/>
                                 Front End
                             </div>
                             <p>I strive for a standard of excellence to deliver into into every product I work on. Let me serve your customers an a unique beautiful experience.</p>
@@ -92,7 +92,7 @@ class Home extends Component{
                         </div>
                         <div className='col'>
                             <div className='title col'>
-                                <FontAwesomeIcon icon={faPaintBrush} />
+                                <AnimatedIcon type='creative'/>
                                 Creative
                             </div>
                             <p>Has someone told you your idea is too stupid or just plain impossible? If I had a life's mission it would be to transform those ideas into reality.</p>
