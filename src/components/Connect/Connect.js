@@ -16,6 +16,9 @@ export default function Connect(){
                 <p>Additionally you can check me out on the following socials:</p>
                 <div className='socials'>{socials.map((s,i)=><a key={i} href={s.url} className='link' target='_blank' rel='noreferrer'><FontAwesomeIcon className='orange' icon={s.icon}/></a>)}</div>
             </div>
+            <footer>
+                Powered by Hyperfocus
+            </footer>
         </div>
     )
 }
