@@ -54,8 +54,13 @@ class Home extends Component{
         return (
             <div className='container' name='Home'>
                 <div className='home-hero col section'>
+                    <span className='row sparkle lead-title'>
+                        {/* <div className='official'><img src='img/official.png' alt='Official'/></div>
+                        <div className='jabe'><img src='img/jabe.png' alt='Jabe'/></div> */}
+                        <h3>Official Jabe</h3>
+                    </span>
                     <h1 className='lead'>Software Developer, Musician & Creative</h1>
-                    <p>✨Building awesome things because they are <span className='orange'>awesome</span>!</p>
+                    <p><span className='sparkle'>✨</span>Building awesome things because they are <span className='orange'>awesome</span>!</p>
                     <canvas id='lead-canvas' onClick={()=>console.log(OrangeParticle.particles)} ref={this.canvas}/>
                     {/* <img src={home} /> */}
                 </div>
