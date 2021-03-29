@@ -52,6 +52,12 @@
 #logo:hover .official, #logo:hover .jabe{
     max-width:150px;
 }
+@media(max-width:700px){
+    #logo{
+        width:0;
+        overflow: hidden;
+    }
+}
 /* .navbar img:hover path{
     stroke-dasharray: 100;
     animation: dash 5s linear;

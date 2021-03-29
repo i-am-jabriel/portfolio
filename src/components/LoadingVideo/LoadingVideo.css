@@ -12,6 +12,7 @@
     display:flex;
     justify-content: center;
     z-index:4;
+    pointer-events: none;
 }
 #logo-intro-wrapper.hide{
     animation: hide 1s ease;

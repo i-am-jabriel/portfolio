@@ -28,9 +28,7 @@ export class OrangeParticle{
 
         this.ddy = 1;
         OrangeParticle.particles.push(this);
-        window.setTimeout(()=>{
-            if(this)this.destroy();
-        },10000);
+        this.lifeSpan =  10000;
     }
     static particles = [];
     static modes = ['tickGravityExplosion', 'tickChaseMouse'];
@@ -45,7 +43,10 @@ export class OrangeParticle{
         OrangeParticle.currentMode = mod(OrangeParticle.currentMode+1,OrangeParticle.modes.length);
         if(OrangeParticle.currentMode == 1)OrangeParticle.dSpeed = 1.01;
     }
+    static lastDeltaTime = 0;
     static tick(){
+        let deltaTime = this.lastDeltaTime ? Date.now() - this.lastDeltaTime : 0;
+        this.lastDeltaTime = Date.now();
         if(OrangeParticle.currentMode == 1)OrangeParticle.dSpeed+=.01;
         OrangeParticle.particles.forEach(p=>{
             p[OrangeParticle.mode]();
@@ -53,6 +54,7 @@ export class OrangeParticle{
             else {
                 window.context.drawImage(window.orangeImg,p.x+p.size*.5,p.y+p.size*.5,p.size,p.size);
                 window.context.arc(p.x,p.y,p.size,0,Math.PI*2);
+                if((p.lifeSpan -= deltaTime)<0)p.destroy();
             }
         });
     }
