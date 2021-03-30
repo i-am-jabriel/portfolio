@@ -24,14 +24,14 @@ export default function AnimatedIcon(props){
         },
         
         frontEnd:{
-            icons:()=><FontAwesomeIcon icon={faPencilRuler} id='front-end-icon'/>,
+            icons:()=><animated.span style={animation}><FontAwesomeIcon icon={faPencilRuler} id='front-end-icon'/></animated.span>,
             from:{},
         },
         backEnd:{
-            icons:()=><>
+            icons:()=><animated.span style={animation}>
                 <span className='relative'><FontAwesomeIcon icon={faCode} className='code' id='back-end-icon'/></span>
                 <FontAwesomeIcon icon={faDesktop} id='back-end-bg-icon'/>
-            </>,
+            </animated.span>,
             from:{},
         }
     }

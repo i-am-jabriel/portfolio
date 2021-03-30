@@ -128,7 +128,7 @@ export default function Music(){
                 <p>I have my music on all Digital Service Platforms (
                     <a href='https://music.apple.com/gb/artist/mind-over-melee/id1492940130' target='_blank' rel='noreferrer' className='music-link'>
                         <FontAwesomeIcon icon={faApple} /> Apple Music
-                    </a>,
+                    </a>, 
                     <a href='https://open.spotify.com/artist/1mRplzvl14eLu5vbvJrlZh' target='_blank' rel='noreferrer' className='music-link'>
                         <FontAwesomeIcon icon={faSpotify} />Spotify
                     </a>, etc.) under the name <span className='orange'>Mind Over Melee</span></p>

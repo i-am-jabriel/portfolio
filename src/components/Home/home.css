@@ -99,6 +99,7 @@
         padding:20px;
         border-radius:20px;
         position: relative;
+        transition: filter 0.2s ease-out;
     }
     .my-image-text:before {
         content: "";
@@ -113,9 +114,9 @@
         top: 24px;
         transform: rotate(180deg);
     }
-}
-.my-image-text:hover{
-    filter: drop-shadow(0 0 20px white);
+    .my-image-text:hover{
+        filter: drop-shadow(0 0 20px #ffffff99);
+    }
 }
 .my-image-wrapper{
     cursor: pointer;
@@ -214,15 +215,17 @@
 }
 .skills svg{
     color:#e67c0a;
-    font-size:1.5em;
+    font-size:2em;
+    height:100px;
+    overflow:hidden;
     margin-bottom:15px;
-    filter:drop-shadow(5px 5px 5px grey);
+    filter:drop-shadow(0px 0px 5px rgba(153, 86, 3, 0.5));
 }
 .skills .code{
     position: absolute;
-    font-size:85%;
-    left:-.6em;
-    top:.2em;
+    font-size:80%;
+    left:.79em;
+    top:-1.9em;
 }
 .skills p{
     max-width:350px;
