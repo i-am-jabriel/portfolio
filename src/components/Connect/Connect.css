@@ -3,9 +3,13 @@
 }
 .socials a,.social svg{    
     transition: all .3s ease;
+    filter:drop-shadow(4px 4px 10px black);
+    margin:5px;
+    color:black;
 }
 .socials a:hover, .socials svg:hover{
-    color:black!important;
+    color:#e67c0a!important;
+    filter:drop-shadow(4px 4px 10px #e67c0a);
 }
 .email,.socials i{
     text-decoration: none;
@@ -22,7 +26,7 @@
     bottom:0;
     left:0;
     z-index:-1;
-    opacity:0.4;
+    opacity:0.2;
 }
 footer{
     background-color: #006699;

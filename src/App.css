@@ -22,9 +22,12 @@ https://color.adobe.com/OfficialJabe-color-theme-16364153
     max-height:10px;
     overflow: hidden;
 }
+.app{
+    overflow-x: hidden;
+}
 body{
     line-height: 1.8;
-    zoom:80%;
+    zoom:85%;
 }
 .container{
     font-family: 'Montserrat', sans-serif;
@@ -52,6 +55,8 @@ p{
 }
 .alt-bg{
     background:#006699;
+    /* background: rgb(57,172,230); */
+    background: linear-gradient(180deg, rgba(57,172,230,1) 0%, rgba(0,102,153,1) 50%);
 }
 .orange{
     color:#e67c0a;
@@ -83,7 +88,6 @@ p{
         position:absolute;
     }
 }
-
 .fadein{
     animation:fadein 0.8s ease;
 }

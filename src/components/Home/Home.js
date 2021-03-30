@@ -68,10 +68,11 @@ class Home extends Component{
                     <h2>Thanks for visiting my site.</h2>
                     <div className='row'>
                         <MyImage />
-                        <p>My names J Abraham Johnson. Although most the time I go by Abe or <span className='orange'>Jabe</span>. I’m the classical millennial creative. I’ve never needed a reason to create, the love of knowledge and the quest for information is enough. Also money. I have many passions, hobbies and skills I can utilize to develop versatile solutions for all types of businesses.</p>
+                        <p className='my-image-text'>Hi! My names J Abraham Johnson. Although most the time I go by Abe or <span className='orange'>Jabe</span>. I’m the classical millennial creative. I’ve never needed a reason to create, the love of knowledge and the quest for information is enough. Also money. I have many passions, hobbies and skills I can utilize to develop versatile solutions for all types of businesses.</p>
                     </div>
                 </div>
-                <div className='col'>
+                <div className='col skills-col'>
+                    <h1>Skills</h1>
                     <div className='row skills'>
                         <div className='col'>
                             <div className='title col'>    

@@ -150,12 +150,12 @@ export default function Music(){
                             </div>
                             <div className='music-input col'>
                                 <div className='music-buttons row'>
-                                    <FontAwesomeIcon icon={faBackward} onClick={()=>{jumpToSong(currentSong-1)}} className='clickable' />
-                                    <FontAwesomeIcon icon={paused?faPlay:faPause} onClick={()=>clickPausePlay()} className='clickable' />
-                                    <FontAwesomeIcon icon={faForward} onClick={()=>{jumpToSong(currentSong+1)}} className='clickable' />
+                                    <FontAwesomeIcon icon={faBackward} onClick={()=>{jumpToSong(currentSong-1)}} className='clickable' data-tip='Previous Track'/>
+                                    <FontAwesomeIcon icon={paused?faPlay:faPause} onClick={()=>clickPausePlay()} className='clickable'/>
+                                    <FontAwesomeIcon icon={faForward} onClick={()=>{jumpToSong(currentSong+1)}} className='clickable' data-tip='Next Track'/>
                                 </div>
                                 <div className='volume-control row'> 
-                                    <FontAwesomeIcon icon={volIcon} onClick={toggleMute} />
+                                    <FontAwesomeIcon icon={volIcon} onClick={toggleMute} data-tip={muted?'Unmute':'Mute'}/>
                                     <span className='volume-slider'><Range type='range' values={[volume]} onChange={onChangeVol} min={0} max={100} step={0.1} className='clickable' 
                                         renderTrack={({ props, children }) => <>
                                             <div {...props} style={{...props.style, height: '10px',width: `100%`,backgroundColor:'#eee', position:'relative',top:'5px'}}>

@@ -4,6 +4,7 @@
 
 .album-view-container{
     align-items: center;
+    text-align: center;
 }
 .timeline-data{
     font-size:1.5em;
@@ -74,11 +75,16 @@
 }
 .volume-control .volume-slider{
     transition: width 0.5s ease;
-    width: 0;
-    overflow: hidden;
+    width:125px;
     display:flex;
 }
-.volume-control:hover .volume-slider{
+@media(min-width:701px){
+    .volume-control .volume-slider{
+        width:0px;
+        overflow: hidden;
+    }
+}
+.volume-control:hover .volume-slider{   
     width:125px;
     overflow: visible;
 }
@@ -159,8 +165,12 @@
 }
 
 
+
 @media (max-width:700px){
-    #album-video, #album-video img,.col.song-list{
+    .col.music-input{
+        width:300px;
+    }
+    #album-video,.col.song-list{
         height:300px;
         width:300px;
     }
@@ -168,8 +178,8 @@
         margin-top:40px;
     }
     #album-video img{
-        width:178%;
-        height:500px;
+        height:300px;
+        width:533px;
     }
     .album-container>.row.wrap{
         flex-direction: column;

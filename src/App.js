@@ -36,7 +36,7 @@ class App extends Component{
                 <Works/>
                 <Music/>
                 <Connect/>
-                <ReactTooltip multiline={true}/>
+                <ReactTooltip multiline={true} effect='solid'/>
                 {/* <Router>
                     <Switch>
                     <Route exact path='/' component={Home}></Route>
