@@ -8,7 +8,7 @@ class LoadingVideo extends Component{
             playing:false,
             finished:false,
         }
-        if(this.props.skip)this.onVideoEnd();
+        if(props.skip)this.onVideoEnd();
     }
     onVideoLoaded(e){
         if(this.state.finished)return;
@@ -17,6 +17,7 @@ class LoadingVideo extends Component{
         this.setState({playing:true});
     }
     onVideoEnd(e){
+        console.log(this.props.skip,'video done');
         this.setState({
             playing:false,
             finished:true,

@@ -12,9 +12,11 @@ import ReactTooltip from 'react-tooltip';
 class App extends Component{
     constructor(props){
         super(props);
+        const skip = document.body.clientWidth<700;
         this.state={
             fixed:true,
-            loading:true,
+            loading:!skip,
+            skip
         };
     }
     componentDidMount(){
@@ -22,6 +24,7 @@ class App extends Component{
         window.addEventListener('scroll',this.onScroll.bind(this));
     }
     onSiteFinishedLoading(){
+        console.log('video done!');
         this.setState({
             ...this.state,
             loading:false,
@@ -30,8 +33,8 @@ class App extends Component{
     render(){
         return (
             <div className={this.state.loading?'app loading':'app app-fadein'}>   
-                <Navbar fixed={this.state.fixed}/>
-                <LoadingVideo onVideoEnd={this.onSiteFinishedLoading.bind(this)}/>
+                <Navbar fixed={this.state.fixed} loading={this.state.loading}/>
+                {!this.state.skip && <LoadingVideo onVideoEnd={this.onSiteFinishedLoading.bind(this)}/>}
                 <Home/>
                 <Works/>
                 <Music/>
