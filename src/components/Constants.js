@@ -1,5 +1,6 @@
-import { faCompactDisc } from "@fortawesome/free-solid-svg-icons";
+import { faCompactDisc, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { matchPath } from "react-router";
 
 export class Album{
     constructor(title,url,date,color,desc=''){
@@ -25,11 +26,16 @@ export class OrangeParticle{
         this.ddx = Math.random()*.05 - .025;
         this.speed = Math.random()*4 + 2;
         //this.dSpeed = Math.random()*.03 * (Math.random()>=.5?-1:1) + 1;
+        this.dTheta = Math.random() * Math.PI * .5;
+        this.ddTheta = (Math.random() - .5) * Math.PI * .002;
+        this.rotation=0;
 
         this.ddy = 1;
         OrangeParticle.particles.push(this);
         this.lifeSpan =  10000;
     }
+    get cx(){return this.x + this.size * .5}
+    get cy(){return this.y + this.size * .5}
     static particles = [];
     static modes = ['tickGravityExplosion', 'tickChaseMouse'];
     static currentMode  = 0;
@@ -44,30 +50,43 @@ export class OrangeParticle{
         if(OrangeParticle.currentMode == 1)OrangeParticle.dSpeed = 1.01;
     }
     static lastDeltaTime = 0;
+    static lastTheta = 0;
     static tick(){
         let deltaTime = this.lastDeltaTime ? Date.now() - this.lastDeltaTime : 0;
         this.lastDeltaTime = Date.now();
+        window.context.save();
+        // let cx =  window.canvas.width * .5, cy = window.canvas.height * .5;
+        //window.context.translate(window.canvas.width * .5, window.canvas.height * .5);
         if(OrangeParticle.currentMode == 1)OrangeParticle.dSpeed+=.01;
         OrangeParticle.particles.forEach(p=>{
+            // OrangeParticle.lastTheta = (-OrangeParticle.lastTheta + p.rotation) % (Math.PI * 2);
+            p.rotation += (p.dTheta += p.ddTheta) * deltaTime * .005;
             p[OrangeParticle.mode]();
-            if(!p.inView)p.destroy();
+            if(!p.inView) p.destroy();
             else {
-                window.context.drawImage(window.orangeImg,p.x+p.size*.5,p.y+p.size*.5,p.size,p.size);
-                window.context.arc(p.x,p.y,p.size,0,Math.PI*2);
-                if((p.lifeSpan -= deltaTime)<0)p.destroy();
+                if ((p.lifeSpan -= deltaTime) < 0) p.destroy();
+                else {
+                    window.context.translate(p.x, p.y);
+                    window.context.rotate(p.rotation);
+                    window.context.drawImage(window.orangeImg, 0,  0, p.size, p.size * 1.8);
+                    window.context.rotate(-p.rotation);
+                    window.context.translate(-p.x, -p.y);
+                }
             }
         });
+        window.context.restore();
     }
     tickGravityExplosion(){
         this.x += (this.dx += this.ddx);
         this.y += this.dy + (this.gy += OrangeParticle.gravityRate);
     }
     tickChaseMouse(){
-        const speed = Math.min(this.speed * OrangeParticle.dSpeed, OrangeParticle.maxSpeed);
+        let speed = Math.min(this.speed * OrangeParticle.dSpeed, OrangeParticle.maxSpeed);
         let theta = this.theta || Math.random() * Math.PI * 2;
         if(window.mouse) theta = Math.atan2(this.x-window.mouse.x,this.y-window.mouse.y) + Math.PI;
         this.theta = lerpRadian(this.theta,theta,OrangeParticle.turnSpeed);
 
+        speed += (this.dx += (this.ddx *= .1 * (Math.random() - 2)));
         this.x += Math.sin(this.theta) * speed;
         this.y += Math.cos(this.theta) * speed;
     }

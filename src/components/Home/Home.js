@@ -29,7 +29,7 @@ class Home extends Component{
         window.canvas.addEventListener('mousemove',e=>window.mouse={x:e.clientX,y:e.clientY-35});
         window.canvas.addEventListener('mouseenter',()=> this.setState({active:true}));
         document.querySelector('.alt.alt-bg').addEventListener('mouseenter', ()=>this.setState({active:false}));
-        window.canvas.addEventListener('click',OrangeParticle.nextMode);
+        window.canvas.addEventListener('click', OrangeParticle.nextMode);
         let style = getComputedStyle(window.canvas);
         window.canvas.height = parseInt(style.height) + 40;
         window.canvas.width = parseInt(window.outerWidth);
@@ -37,7 +37,12 @@ class Home extends Component{
     }
     tick(){
         if(!this.state.active)return;
-        window.context.clearRect(0, 0, window.canvas.width, window.canvas.height);
+        window.context.fillStyle = '#ffffffbb';
+        window.context.beginPath();
+        window.context.rect(0, 0, window.canvas.width, window.canvas.height);
+        window.context.fill();
+        window.context.closePath();
+        // window.context.clearRect(0, 0, window.canvas.width, window.canvas.height);
         OrangeParticle.tick();
     }
     fireOrange(){
@@ -79,7 +84,7 @@ class Home extends Component{
                                 <AnimatedIcon type='backEnd'/>
                                 Back End
                             </div>
-                            <p>I really love getting into the nuts in bolts of how things work. One of my lifes greatest joys is creating the functionionality behind a well working application</p>
+                            <p>I really love getting into the nuts and bolts of how things work. One of my life's greatest joys is creating the functionionality behind a well working application.</p>
                             <p className='blue'>Technology I Love Working With:</p>
                             {['Node.js','Python', 'Ruby', 'C#', 'PSQL', 'AWS'].map(x=><p key={x}>{x}</p>)}
                             <p className='blue'>I also have worked in these langauges:</p>
@@ -90,7 +95,7 @@ class Home extends Component{
                                 <AnimatedIcon type='frontEnd'/>
                                 Front End
                             </div>
-                            <p>I strive for a standard of excellence to deliver into into every product I work on. Let me serve your customers an a unique beautiful experience.</p>
+                            <p>I strive for a standard of excellence to deliver into into every product I work on. Let me serve your customers a unique, beautiful experience.</p>
                             <p className='blue'>Technology I Love Working With:</p>
                             {['JavaScript / HTML5','React.js','Bootstrap','WordPress','Photoshop', 'FontAwesome'].map(x=><p key={x}>{x}</p>)}
                             <p className='blue'>I also have have expereience with:</p>
